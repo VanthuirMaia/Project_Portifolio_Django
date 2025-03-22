@@ -1,6 +1,19 @@
 from django.shortcuts import render
 from .models import Projeto
 
-def projeto_list(request):
+def index(request):
+    return render(request, 'index.html')
+
+def sobre(request):
+    return render(request, 'sobre.html')
+
+def contato(request):
+    return render(request, 'contato.html')
+
+def portfolio(request):
     projetos = Projeto.objects.all()
-    return render(request, 'projetos/projeto_list.html', {'projetos': projetos})
+    return render(request, 'portfolio.html', {'projetos': projetos})
+
+def portfolio_details(request, id):
+    projeto = Projeto.objects.get(id=id)
+    return render(request, 'portfolio-details.html', {'projeto': projeto})
